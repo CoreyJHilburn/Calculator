@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InComculator.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,21 +11,41 @@ namespace InComculator.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "Calculator";
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public JsonResult Calculate(Calculator form)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            double? result = null;
+            switch(form.ID)
+            {
+                case 1: result = form.Num1 + form.Num2;
+                    break;
+                case 2: result = form.Num1 - form.Num2;
+                    break;
+                case 3: result = form.Num1 * form.Num2;
+                    break;
+                case 4: result = form.Num1 / form.Num2;
+                    break;
+                default: return Json(new { valid = false, result });
+            }
+            return Json(new { valid = true, result });
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public JsonResult Populate()
         {
-            ViewBag.Message = "Your contact page.";
+            return Json(GetOperators());
+        }
 
-            return View();
+        public List<Operators> GetOperators()
+        {
+            using (var context = new CalculatorContext())
+            {
+                return context.Operators.ToList();
+            }
         }
     }
 }
