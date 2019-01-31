@@ -20,7 +20,7 @@
                     $.each(data, function (i, item) {
                         $('#ops').append($("<option></option>")
                             .attr("value", item.pk_Id)
-                            .text(item.Name)); 
+                            .text(item.Name));
                     });
                 },
                 error: function () {
@@ -47,44 +47,35 @@
                     }
                 });
             }
-                
+
         });
     });
 </script>
 
-
-<div class="row">
-    <h3>InComculator</h3>
+<div class="container">
     <form id="calculator">
-        <div class="col-xs-12">
-            <div class="form-group">
+        <div class="row">
+            <div class="col-4">
                 <label>Number 1</label>
                 <input name="Num1" class="form-control" type="number" placeholder="Enter a number" />
             </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="form-group">
+            <div class="col-4">
                 <label>Number 2</label>
                 <input name="Num2" class="form-control" type="number" placeholder="Enter a number" />
             </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="form-group">
+            <div class="col-4">
                 <label>Operand</label>
                 <select name="ID" class="form-control" id="ops">
                     <option value="">Select</option>
                 </select>
             </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="form-group">
+            <div class="col-4">
                 <button id="submitbtn" type="button" class="btn btn-success">Calculate</button>
-            </div>       
-        </div>
-        <div class="col-xs-12">
-            <div class="form-group">
-                <input id="result" class="form-control" readonly type="number" />
-            </div>       
+            </div>
+            <div class="col-4">
+                <label>Result</label>
+                <input id="result" class="form-control rounded-0" readonly type="number" />
+            </div>
         </div>
     </form>
 </div>
